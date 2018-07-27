@@ -2,6 +2,39 @@
   "contractName": "SimpleBank",
   "abi": [
     {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "enrolled",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "payable": false,
       "stateMutability": "nonpayable",
@@ -86,24 +119,24 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5061017c806100206000396000f300608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e1a7d4d14610074578063b69ef8a8146100b5578063d0e30db0146100e0578063e65f2a7e1461010b575b34801561006e57600080fd5b50600080fd5b34801561008057600080fd5b5061009f6004803603810190808035906020019092919050505061013a565b6040518082815260200191505060405180910390f35b3480156100c157600080fd5b506100ca610141565b6040518082815260200191505060405180910390f35b3480156100ec57600080fd5b506100f5610146565b6040518082815260200191505060405180910390f35b34801561011757600080fd5b5061012061014b565b604051808215151515815260200191505060405180910390f35b6000919050565b600090565b600090565b6000905600a165627a7a723058200d7ca014e412407797f412bf0f01c8a56a5787747f94bc27e89a6563f53b68250029",
-  "deployedBytecode": "0x608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e1a7d4d14610074578063b69ef8a8146100b5578063d0e30db0146100e0578063e65f2a7e1461010b575b34801561006e57600080fd5b50600080fd5b34801561008057600080fd5b5061009f6004803603810190808035906020019092919050505061013a565b6040518082815260200191505060405180910390f35b3480156100c157600080fd5b506100ca610141565b6040518082815260200191505060405180910390f35b3480156100ec57600080fd5b506100f5610146565b6040518082815260200191505060405180910390f35b34801561011757600080fd5b5061012061014b565b604051808215151515815260200191505060405180910390f35b6000919050565b600090565b600090565b6000905600a165627a7a723058200d7ca014e412407797f412bf0f01c8a56a5787747f94bc27e89a6563f53b68250029",
-  "sourceMap": "25:2814:1:-;;;945:81;8:9:-1;5:2;;;30:1;27;20:12;5:2;945:81:1;25:2814;;;;;;",
-  "deployedSourceMap": "25:2814:1:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:2814:1;2822:8;;;1794:392;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1794:392:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2386:112;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2386:112:1;;;;;;;;;;;;;;;;;;;;;;;1388:188;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1388:188:1;;;;;;;;;;;;;;;;;;;;;;;1155:46;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1155:46:1;;;;;;;;;;;;;;;;;;;;;;;;;;;1794:392;1849:4;1794:392;;;:::o;2386:112::-;2421:4;2386:112;:::o;1388:188::-;1423:4;1388:188;:::o;1155:46::-;1189:4;1155:46;:::o",
-  "source": "pragma solidity ^0.4.13;\ncontract SimpleBank {\n\n    /* Fill in the keyword. Hint: We want to protect our users balance from other contracts*/\n    mapping (address => uint) balances;\n    \n    /* Fill in the keyword. We want to create a getter function and allow contracts to be able to see if a user is enrolled.  */\n    mapping (address => bool) enrolled;\n\n    /* Let's make sure everyone knows who owns the bank. Use the appropriate keyword for this*/\n    address owner;\n\n    // Events - publicize actions to external listeners\n    \n    /* Add an argument for this event, an accountAddress */\n    event LogEnrolled();\n\n    /* Add 2 arguments for this event, an accountAddress and an amount */\n    event LogDepositMade();\n\n    /* Create an event called LogWithdrawal */\n    /* Add 3 arguments for this event, an accountAddress, withdrawAmount and a newBalance */\n\n    // Constructor, can receive one or many variables here; only one allowed\n    constructor() {\n        /* Set the owner to the creator of this contract */\n    }\n\n    /// @notice Enroll a customer with the bank\n    /// @return The users enrolled status\n    // Log the appropriate event\n    function enroll() public returns (bool){\n    }\n\n    /// @notice Deposit ether into bank\n    /// @return The balance of the user after the deposit is made\n    // Add the appropriate keyword so that this function can receive ether\n    function deposit() public returns (uint) {\n        /* Add the amount to the user's balance, call the event associated with a deposit,\n          then return the balance of the user */\n    }\n\n    /// @notice Withdraw ether from bank\n    /// @dev This does not return any excess ether sent to it\n    /// @param withdrawAmount amount you want to withdraw\n    /// @return The balance remaining for the user\n    function withdraw(uint withdrawAmount) public returns (uint) {\n        /* If the sender's balance is at least the amount they want to withdraw,\n           Subtract the amount from the sender's balance, and try to send that amount of ether\n           to the user attempting to withdraw. IF the send fails, add the amount back to the user's balance\n           return the user's balance.*/\n    }\n\n    /// @notice Get balance\n    /// @return The balance of the user\n    // A SPECIAL KEYWORD prevents function from editing state variables;\n    // allows function to run locally/off blockchain\n    function balance() public returns (uint) {\n        /* Get the balance of the sender of this transaction */\n    }\n\n    // Fallback function - Called if other functions don't match call or\n    // sent ether without data\n    // Typically, called when invalid data is sent\n    // Added so ether sent to this contract is reverted if the contract fails\n    // otherwise, the sender's money is transferred to contract\n    function() {\n        revert();\n    }\n}\n",
+  "bytecode": "0x608060405234801561001057600080fd5b5061028a806100206000396000f300608060405260043610610078576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806310eb0e0e1461008a5780632e1a7d4d146100e55780638da5cb5b14610126578063b69ef8a81461017d578063d0e30db0146101a8578063e65f2a7e146101d3575b34801561008457600080fd5b50600080fd5b34801561009657600080fd5b506100cb600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610202565b604051808215151515815260200191505060405180910390f35b3480156100f157600080fd5b5061011060048036038101908080359060200190929190505050610222565b6040518082815260200191505060405180910390f35b34801561013257600080fd5b5061013b610229565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561018957600080fd5b5061019261024f565b6040518082815260200191505060405180910390f35b3480156101b457600080fd5b506101bd610254565b6040518082815260200191505060405180910390f35b3480156101df57600080fd5b506101e8610259565b604051808215151515815260200191505060405180910390f35b60016020528060005260406000206000915054906101000a900460ff1681565b6000919050565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600090565b600090565b6000905600a165627a7a723058206536344786b8a5db275debce12ef19500be2564567a0481ea22dbeb70efcbfeb0029",
+  "deployedBytecode": "0x608060405260043610610078576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806310eb0e0e1461008a5780632e1a7d4d146100e55780638da5cb5b14610126578063b69ef8a81461017d578063d0e30db0146101a8578063e65f2a7e146101d3575b34801561008457600080fd5b50600080fd5b34801561009657600080fd5b506100cb600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610202565b604051808215151515815260200191505060405180910390f35b3480156100f157600080fd5b5061011060048036038101908080359060200190929190505050610222565b6040518082815260200191505060405180910390f35b34801561013257600080fd5b5061013b610229565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561018957600080fd5b5061019261024f565b6040518082815260200191505060405180910390f35b3480156101b457600080fd5b506101bd610254565b6040518082815260200191505060405180910390f35b3480156101df57600080fd5b506101e8610259565b604051808215151515815260200191505060405180910390f35b60016020528060005260406000206000915054906101000a900460ff1681565b6000919050565b600260009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b600090565b600090565b6000905600a165627a7a723058206536344786b8a5db275debce12ef19500be2564567a0481ea22dbeb70efcbfeb0029",
+  "sourceMap": "25:2836:0:-;;;967:81;8:9:-1;5:2;;;30:1;27;20:12;5:2;967:81:0;25:2836;;;;;;",
+  "deployedSourceMap": "25:2836:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;25:2836:0;2844:8;;;328:41;;8:9:-1;5:2;;;30:1;27;20:12;5:2;328:41:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1816:392;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1816:392:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;472:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;472:20:0;;;;;;;;;;;;;;;;;;;;;;;;;;;2408:112;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2408:112:0;;;;;;;;;;;;;;;;;;;;;;;1410:188;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1410:188:0;;;;;;;;;;;;;;;;;;;;;;;1177:46;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1177:46:0;;;;;;;;;;;;;;;;;;;;;;;;;;;328:41;;;;;;;;;;;;;;;;;;;;;;:::o;1816:392::-;1871:4;1816:392;;;:::o;472:20::-;;;;;;;;;;;;;:::o;2408:112::-;2443:4;2408:112;:::o;1410:188::-;1445:4;1410:188;:::o;1177:46::-;1211:4;1177:46;:::o",
+  "source": "pragma solidity ^0.4.13;\ncontract SimpleBank {\n\n    /* Fill in the keyword. Hint: We want to protect our users balance from other contracts*/\n    mapping (address => uint) private balances;\n    \n    /* Fill in the keyword. We want to create a getter function and allow contracts to be able to see if a user is enrolled.  */\n    mapping (address => bool) public enrolled;\n\n    /* Let's make sure everyone knows who owns the bank. Use the appropriate keyword for this*/\n    address public owner;\n\n    // Events - publicize actions to external listeners\n    \n    /* Add an argument for this event, an accountAddress */\n    event LogEnrolled();\n\n    /* Add 2 arguments for this event, an accountAddress and an amount */\n    event LogDepositMade();\n\n    /* Create an event called LogWithdrawal */\n    /* Add 3 arguments for this event, an accountAddress, withdrawAmount and a newBalance */\n\n    // Constructor, can receive one or many variables here; only one allowed\n    constructor() {\n        /* Set the owner to the creator of this contract */\n    }\n\n    /// @notice Enroll a customer with the bank\n    /// @return The users enrolled status\n    // Log the appropriate event\n    function enroll() public returns (bool){\n    }\n\n    /// @notice Deposit ether into bank\n    /// @return The balance of the user after the deposit is made\n    // Add the appropriate keyword so that this function can receive ether\n    function deposit() public returns (uint) {\n        /* Add the amount to the user's balance, call the event associated with a deposit,\n          then return the balance of the user */\n    }\n\n    /// @notice Withdraw ether from bank\n    /// @dev This does not return any excess ether sent to it\n    /// @param withdrawAmount amount you want to withdraw\n    /// @return The balance remaining for the user\n    function withdraw(uint withdrawAmount) public returns (uint) {\n        /* If the sender's balance is at least the amount they want to withdraw,\n           Subtract the amount from the sender's balance, and try to send that amount of ether\n           to the user attempting to withdraw. IF the send fails, add the amount back to the user's balance\n           return the user's balance.*/\n    }\n\n    /// @notice Get balance\n    /// @return The balance of the user\n    // A SPECIAL KEYWORD prevents function from editing state variables;\n    // allows function to run locally/off blockchain\n    function balance() public returns (uint) {\n        /* Get the balance of the sender of this transaction */\n    }\n\n    // Fallback function - Called if other functions don't match call or\n    // sent ether without data\n    // Typically, called when invalid data is sent\n    // Added so ether sent to this contract is reverted if the contract fails\n    // otherwise, the sender's money is transferred to contract\n    function() {\n        revert();\n    }\n}\n",
   "sourcePath": "/Users/heartbank/Google Drive/ConsenSys/Simple Bank/SimpleBank/contracts/SimpleBank.sol",
   "ast": {
     "absolutePath": "/Users/heartbank/Google Drive/ConsenSys/Simple Bank/SimpleBank/contracts/SimpleBank.sol",
     "exportedSymbols": {
       "SimpleBank": [
-        110
+        53
       ]
     },
-    "id": 111,
+    "id": 54,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 58,
+        "id": 1,
         "literals": [
           "solidity",
           "^",
@@ -111,7 +144,7 @@
           ".13"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:1"
+        "src": "0:24:0"
       },
       {
         "baseContracts": [],
@@ -119,20 +152,20 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 110,
+        "id": 53,
         "linearizedBaseContracts": [
-          110
+          53
         ],
         "name": "SimpleBank",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 62,
+            "id": 5,
             "name": "balances",
             "nodeType": "VariableDeclaration",
-            "scope": 110,
-            "src": "146:34:1",
+            "scope": 53,
+            "src": "146:42:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -140,28 +173,28 @@
               "typeString": "mapping(address => uint256)"
             },
             "typeName": {
-              "id": 61,
+              "id": 4,
               "keyType": {
-                "id": 59,
+                "id": 2,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "155:7:1",
+                "src": "155:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "146:25:1",
+              "src": "146:25:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                 "typeString": "mapping(address => uint256)"
               },
               "valueType": {
-                "id": 60,
+                "id": 3,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "166:4:1",
+                "src": "166:4:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -169,15 +202,15 @@
               }
             },
             "value": null,
-            "visibility": "internal"
+            "visibility": "private"
           },
           {
             "constant": false,
-            "id": 66,
+            "id": 9,
             "name": "enrolled",
             "nodeType": "VariableDeclaration",
-            "scope": 110,
-            "src": "320:34:1",
+            "scope": 53,
+            "src": "328:41:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -185,28 +218,28 @@
               "typeString": "mapping(address => bool)"
             },
             "typeName": {
-              "id": 65,
+              "id": 8,
               "keyType": {
-                "id": 63,
+                "id": 6,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "329:7:1",
+                "src": "337:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "320:25:1",
+              "src": "328:25:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                 "typeString": "mapping(address => bool)"
               },
               "valueType": {
-                "id": 64,
+                "id": 7,
                 "name": "bool",
                 "nodeType": "ElementaryTypeName",
-                "src": "340:4:1",
+                "src": "348:4:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_bool",
                   "typeString": "bool"
@@ -214,15 +247,15 @@
               }
             },
             "value": null,
-            "visibility": "internal"
+            "visibility": "public"
           },
           {
             "constant": false,
-            "id": 68,
+            "id": 11,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 110,
-            "src": "457:13:1",
+            "scope": 53,
+            "src": "472:20:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -230,55 +263,55 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 67,
+              "id": 10,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "457:7:1",
+              "src": "472:7:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
               }
             },
             "value": null,
-            "visibility": "internal"
+            "visibility": "public"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 70,
+            "id": 13,
             "name": "LogEnrolled",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 69,
+              "id": 12,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "615:2:1"
+              "src": "637:2:0"
             },
-            "src": "598:20:1"
+            "src": "620:20:0"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 72,
+            "id": 15,
             "name": "LogDepositMade",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 71,
+              "id": 14,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "718:2:1"
+              "src": "740:2:0"
             },
-            "src": "698:23:1"
+            "src": "720:23:0"
           },
           {
             "body": {
-              "id": 75,
+              "id": 18,
               "nodeType": "Block",
-              "src": "959:67:1",
+              "src": "981:67:0",
               "statements": []
             },
             "documentation": null,
-            "id": 76,
+            "id": 19,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -286,33 +319,33 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 73,
+              "id": 16,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "956:2:1"
+              "src": "978:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 74,
+              "id": 17,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "959:0:1"
+              "src": "981:0:0"
             },
-            "scope": 110,
-            "src": "945:81:1",
+            "scope": 53,
+            "src": "967:81:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 81,
+              "id": 24,
               "nodeType": "Block",
-              "src": "1194:7:1",
+              "src": "1216:7:0",
               "statements": []
             },
             "documentation": "@notice Enroll a customer with the bank\n @return The users enrolled status",
-            "id": 82,
+            "id": 25,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -320,23 +353,23 @@
             "name": "enroll",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 77,
+              "id": 20,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1170:2:1"
+              "src": "1192:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 80,
+              "id": 23,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 79,
+                  "id": 22,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 82,
-                  "src": "1189:4:1",
+                  "scope": 25,
+                  "src": "1211:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -344,10 +377,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 78,
+                    "id": 21,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1189:4:1",
+                    "src": "1211:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -357,23 +390,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1188:6:1"
+              "src": "1210:6:0"
             },
-            "scope": 110,
-            "src": "1155:46:1",
+            "scope": 53,
+            "src": "1177:46:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 87,
+              "id": 30,
               "nodeType": "Block",
-              "src": "1429:147:1",
+              "src": "1451:147:0",
               "statements": []
             },
             "documentation": "@notice Deposit ether into bank\n @return The balance of the user after the deposit is made",
-            "id": 88,
+            "id": 31,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -381,23 +414,23 @@
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 83,
+              "id": 26,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1404:2:1"
+              "src": "1426:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 86,
+              "id": 29,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 85,
+                  "id": 28,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 88,
-                  "src": "1423:4:1",
+                  "scope": 31,
+                  "src": "1445:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -405,10 +438,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 84,
+                    "id": 27,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1423:4:1",
+                    "src": "1445:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -418,23 +451,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1422:6:1"
+              "src": "1444:6:0"
             },
-            "scope": 110,
-            "src": "1388:188:1",
+            "scope": 53,
+            "src": "1410:188:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 95,
+              "id": 38,
               "nodeType": "Block",
-              "src": "1855:331:1",
+              "src": "1877:331:0",
               "statements": []
             },
             "documentation": "@notice Withdraw ether from bank\n @dev This does not return any excess ether sent to it\n @param withdrawAmount amount you want to withdraw\n @return The balance remaining for the user",
-            "id": 96,
+            "id": 39,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -442,16 +475,16 @@
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 91,
+              "id": 34,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 90,
+                  "id": 33,
                   "name": "withdrawAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 96,
-                  "src": "1812:19:1",
+                  "scope": 39,
+                  "src": "1834:19:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -459,10 +492,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 89,
+                    "id": 32,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1812:4:1",
+                    "src": "1834:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -472,20 +505,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1811:21:1"
+              "src": "1833:21:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 94,
+              "id": 37,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 93,
+                  "id": 36,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 96,
-                  "src": "1849:4:1",
+                  "scope": 39,
+                  "src": "1871:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -493,10 +526,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 92,
+                    "id": 35,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1849:4:1",
+                    "src": "1871:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -506,23 +539,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1848:6:1"
+              "src": "1870:6:0"
             },
-            "scope": 110,
-            "src": "1794:392:1",
+            "scope": 53,
+            "src": "1816:392:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 101,
+              "id": 44,
               "nodeType": "Block",
-              "src": "2427:71:1",
+              "src": "2449:71:0",
               "statements": []
             },
             "documentation": "@notice Get balance\n @return The balance of the user",
-            "id": 102,
+            "id": 45,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -530,23 +563,23 @@
             "name": "balance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 97,
+              "id": 40,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2402:2:1"
+              "src": "2424:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 100,
+              "id": 43,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 99,
+                  "id": 42,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 102,
-                  "src": "2421:4:1",
+                  "scope": 45,
+                  "src": "2443:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -554,10 +587,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 98,
+                    "id": 41,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2421:4:1",
+                    "src": "2443:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -567,19 +600,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2420:6:1"
+              "src": "2442:6:0"
             },
-            "scope": 110,
-            "src": "2386:112:1",
+            "scope": 53,
+            "src": "2408:112:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 108,
+              "id": 51,
               "nodeType": "Block",
-              "src": "2812:25:1",
+              "src": "2834:25:0",
               "statements": [
                 {
                   "expression": {
@@ -587,21 +620,21 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 105,
+                      "id": 48,
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        130,
-                        131
+                        73,
+                        74
                       ],
-                      "referencedDeclaration": 130,
-                      "src": "2822:6:1",
+                      "referencedDeclaration": 73,
+                      "src": "2844:6:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
                         "typeString": "function () pure"
                       }
                     },
-                    "id": 106,
+                    "id": 49,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -609,20 +642,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "2822:8:1",
+                    "src": "2844:8:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 107,
+                  "id": 50,
                   "nodeType": "ExpressionStatement",
-                  "src": "2822:8:1"
+                  "src": "2844:8:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 109,
+            "id": 52,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -630,43 +663,43 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 103,
+              "id": 46,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2809:2:1"
+              "src": "2831:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 104,
+              "id": 47,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2812:0:1"
+              "src": "2834:0:0"
             },
-            "scope": 110,
-            "src": "2801:36:1",
+            "scope": 53,
+            "src": "2823:36:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 111,
-        "src": "25:2814:1"
+        "scope": 54,
+        "src": "25:2836:0"
       }
     ],
-    "src": "0:2840:1"
+    "src": "0:2862:0"
   },
   "legacyAST": {
     "absolutePath": "/Users/heartbank/Google Drive/ConsenSys/Simple Bank/SimpleBank/contracts/SimpleBank.sol",
     "exportedSymbols": {
       "SimpleBank": [
-        110
+        53
       ]
     },
-    "id": 111,
+    "id": 54,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 58,
+        "id": 1,
         "literals": [
           "solidity",
           "^",
@@ -674,7 +707,7 @@
           ".13"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:1"
+        "src": "0:24:0"
       },
       {
         "baseContracts": [],
@@ -682,20 +715,20 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 110,
+        "id": 53,
         "linearizedBaseContracts": [
-          110
+          53
         ],
         "name": "SimpleBank",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 62,
+            "id": 5,
             "name": "balances",
             "nodeType": "VariableDeclaration",
-            "scope": 110,
-            "src": "146:34:1",
+            "scope": 53,
+            "src": "146:42:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -703,28 +736,28 @@
               "typeString": "mapping(address => uint256)"
             },
             "typeName": {
-              "id": 61,
+              "id": 4,
               "keyType": {
-                "id": 59,
+                "id": 2,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "155:7:1",
+                "src": "155:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "146:25:1",
+              "src": "146:25:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
                 "typeString": "mapping(address => uint256)"
               },
               "valueType": {
-                "id": 60,
+                "id": 3,
                 "name": "uint",
                 "nodeType": "ElementaryTypeName",
-                "src": "166:4:1",
+                "src": "166:4:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_uint256",
                   "typeString": "uint256"
@@ -732,15 +765,15 @@
               }
             },
             "value": null,
-            "visibility": "internal"
+            "visibility": "private"
           },
           {
             "constant": false,
-            "id": 66,
+            "id": 9,
             "name": "enrolled",
             "nodeType": "VariableDeclaration",
-            "scope": 110,
-            "src": "320:34:1",
+            "scope": 53,
+            "src": "328:41:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -748,28 +781,28 @@
               "typeString": "mapping(address => bool)"
             },
             "typeName": {
-              "id": 65,
+              "id": 8,
               "keyType": {
-                "id": 63,
+                "id": 6,
                 "name": "address",
                 "nodeType": "ElementaryTypeName",
-                "src": "329:7:1",
+                "src": "337:7:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_address",
                   "typeString": "address"
                 }
               },
               "nodeType": "Mapping",
-              "src": "320:25:1",
+              "src": "328:25:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
                 "typeString": "mapping(address => bool)"
               },
               "valueType": {
-                "id": 64,
+                "id": 7,
                 "name": "bool",
                 "nodeType": "ElementaryTypeName",
-                "src": "340:4:1",
+                "src": "348:4:0",
                 "typeDescriptions": {
                   "typeIdentifier": "t_bool",
                   "typeString": "bool"
@@ -777,15 +810,15 @@
               }
             },
             "value": null,
-            "visibility": "internal"
+            "visibility": "public"
           },
           {
             "constant": false,
-            "id": 68,
+            "id": 11,
             "name": "owner",
             "nodeType": "VariableDeclaration",
-            "scope": 110,
-            "src": "457:13:1",
+            "scope": 53,
+            "src": "472:20:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -793,55 +826,55 @@
               "typeString": "address"
             },
             "typeName": {
-              "id": 67,
+              "id": 10,
               "name": "address",
               "nodeType": "ElementaryTypeName",
-              "src": "457:7:1",
+              "src": "472:7:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_address",
                 "typeString": "address"
               }
             },
             "value": null,
-            "visibility": "internal"
+            "visibility": "public"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 70,
+            "id": 13,
             "name": "LogEnrolled",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 69,
+              "id": 12,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "615:2:1"
+              "src": "637:2:0"
             },
-            "src": "598:20:1"
+            "src": "620:20:0"
           },
           {
             "anonymous": false,
             "documentation": null,
-            "id": 72,
+            "id": 15,
             "name": "LogDepositMade",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 71,
+              "id": 14,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "718:2:1"
+              "src": "740:2:0"
             },
-            "src": "698:23:1"
+            "src": "720:23:0"
           },
           {
             "body": {
-              "id": 75,
+              "id": 18,
               "nodeType": "Block",
-              "src": "959:67:1",
+              "src": "981:67:0",
               "statements": []
             },
             "documentation": null,
-            "id": 76,
+            "id": 19,
             "implemented": true,
             "isConstructor": true,
             "isDeclaredConst": false,
@@ -849,33 +882,33 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 73,
+              "id": 16,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "956:2:1"
+              "src": "978:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 74,
+              "id": 17,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "959:0:1"
+              "src": "981:0:0"
             },
-            "scope": 110,
-            "src": "945:81:1",
+            "scope": 53,
+            "src": "967:81:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 81,
+              "id": 24,
               "nodeType": "Block",
-              "src": "1194:7:1",
+              "src": "1216:7:0",
               "statements": []
             },
             "documentation": "@notice Enroll a customer with the bank\n @return The users enrolled status",
-            "id": 82,
+            "id": 25,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -883,23 +916,23 @@
             "name": "enroll",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 77,
+              "id": 20,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1170:2:1"
+              "src": "1192:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 80,
+              "id": 23,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 79,
+                  "id": 22,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 82,
-                  "src": "1189:4:1",
+                  "scope": 25,
+                  "src": "1211:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -907,10 +940,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 78,
+                    "id": 21,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1189:4:1",
+                    "src": "1211:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -920,23 +953,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1188:6:1"
+              "src": "1210:6:0"
             },
-            "scope": 110,
-            "src": "1155:46:1",
+            "scope": 53,
+            "src": "1177:46:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 87,
+              "id": 30,
               "nodeType": "Block",
-              "src": "1429:147:1",
+              "src": "1451:147:0",
               "statements": []
             },
             "documentation": "@notice Deposit ether into bank\n @return The balance of the user after the deposit is made",
-            "id": 88,
+            "id": 31,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -944,23 +977,23 @@
             "name": "deposit",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 83,
+              "id": 26,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "1404:2:1"
+              "src": "1426:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 86,
+              "id": 29,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 85,
+                  "id": 28,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 88,
-                  "src": "1423:4:1",
+                  "scope": 31,
+                  "src": "1445:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -968,10 +1001,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 84,
+                    "id": 27,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1423:4:1",
+                    "src": "1445:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -981,23 +1014,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1422:6:1"
+              "src": "1444:6:0"
             },
-            "scope": 110,
-            "src": "1388:188:1",
+            "scope": 53,
+            "src": "1410:188:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 95,
+              "id": 38,
               "nodeType": "Block",
-              "src": "1855:331:1",
+              "src": "1877:331:0",
               "statements": []
             },
             "documentation": "@notice Withdraw ether from bank\n @dev This does not return any excess ether sent to it\n @param withdrawAmount amount you want to withdraw\n @return The balance remaining for the user",
-            "id": 96,
+            "id": 39,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1005,16 +1038,16 @@
             "name": "withdraw",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 91,
+              "id": 34,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 90,
+                  "id": 33,
                   "name": "withdrawAmount",
                   "nodeType": "VariableDeclaration",
-                  "scope": 96,
-                  "src": "1812:19:1",
+                  "scope": 39,
+                  "src": "1834:19:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1022,10 +1055,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 89,
+                    "id": 32,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1812:4:1",
+                    "src": "1834:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1035,20 +1068,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1811:21:1"
+              "src": "1833:21:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 94,
+              "id": 37,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 93,
+                  "id": 36,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 96,
-                  "src": "1849:4:1",
+                  "scope": 39,
+                  "src": "1871:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1056,10 +1089,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 92,
+                    "id": 35,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "1849:4:1",
+                    "src": "1871:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1069,23 +1102,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "1848:6:1"
+              "src": "1870:6:0"
             },
-            "scope": 110,
-            "src": "1794:392:1",
+            "scope": 53,
+            "src": "1816:392:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 101,
+              "id": 44,
               "nodeType": "Block",
-              "src": "2427:71:1",
+              "src": "2449:71:0",
               "statements": []
             },
             "documentation": "@notice Get balance\n @return The balance of the user",
-            "id": 102,
+            "id": 45,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1093,23 +1126,23 @@
             "name": "balance",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 97,
+              "id": 40,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2402:2:1"
+              "src": "2424:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 100,
+              "id": 43,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 99,
+                  "id": 42,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 102,
-                  "src": "2421:4:1",
+                  "scope": 45,
+                  "src": "2443:4:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1117,10 +1150,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 98,
+                    "id": 41,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "2421:4:1",
+                    "src": "2443:4:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1130,19 +1163,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "2420:6:1"
+              "src": "2442:6:0"
             },
-            "scope": 110,
-            "src": "2386:112:1",
+            "scope": 53,
+            "src": "2408:112:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 108,
+              "id": 51,
               "nodeType": "Block",
-              "src": "2812:25:1",
+              "src": "2834:25:0",
               "statements": [
                 {
                   "expression": {
@@ -1150,21 +1183,21 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 105,
+                      "id": 48,
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        130,
-                        131
+                        73,
+                        74
                       ],
-                      "referencedDeclaration": 130,
-                      "src": "2822:6:1",
+                      "referencedDeclaration": 73,
+                      "src": "2844:6:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
                         "typeString": "function () pure"
                       }
                     },
-                    "id": 106,
+                    "id": 49,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1172,20 +1205,20 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "2822:8:1",
+                    "src": "2844:8:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 107,
+                  "id": 50,
                   "nodeType": "ExpressionStatement",
-                  "src": "2822:8:1"
+                  "src": "2844:8:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 109,
+            "id": 52,
             "implemented": true,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -1193,30 +1226,30 @@
             "name": "",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 103,
+              "id": 46,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2809:2:1"
+              "src": "2831:2:0"
             },
             "payable": false,
             "returnParameters": {
-              "id": 104,
+              "id": 47,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "2812:0:1"
+              "src": "2834:0:0"
             },
-            "scope": 110,
-            "src": "2801:36:1",
+            "scope": 53,
+            "src": "2823:36:0",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 111,
-        "src": "25:2814:1"
+        "scope": 54,
+        "src": "25:2836:0"
       }
     ],
-    "src": "0:2840:1"
+    "src": "0:2862:0"
   },
   "compiler": {
     "name": "solc",
@@ -1231,5 +1264,5 @@
     }
   },
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-07-27T23:11:52.417Z"
+  "updatedAt": "2018-07-27T23:32:58.544Z"
 }
