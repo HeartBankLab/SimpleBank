@@ -40,9 +40,13 @@ contract SimpleBank {
     /// @notice Deposit ether into bank
     /// @return The balance of the user after the deposit is made
     // Add the appropriate keyword so that this function can receive ether
-    function deposit() public returns (uint) {
+    function deposit() public payable returns (uint) {
         /* Add the amount to the user's balance, call the event associated with a deposit,
           then return the balance of the user */
+        require(enrolled[msg.sender]);
+        balances[msg.sender] = msg.value;
+        emit LogDepositMade(msg.sender, msg.value);
+        return balances[msg.sender];
     }
 
     /// @notice Withdraw ether from bank
@@ -60,8 +64,9 @@ contract SimpleBank {
     /// @return The balance of the user
     // A SPECIAL KEYWORD prevents function from editing state variables;
     // allows function to run locally/off blockchain
-    function balance() public returns (uint) {
+    function balance() public view returns (uint) {
         /* Get the balance of the sender of this transaction */
+        return balances[msg.sender];
     }
 
     // Fallback function - Called if other functions don't match call or
